@@ -1,0 +1,39 @@
+{% extends 'stripe_shop/base.html' %}
+{% block title %} Buy Product {% endblock title%} 
+{% block script %} <script src="https://js.stripe.com/v3/"></script> {% endblock script%}
+{% block content %}
+    <div class="row">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <td>ID</td>
+                            <td>{{ object.id }}</td>
+                        </tr>
+                        <tr>
+                            <td>Наименование</td>
+                            <td>{{ object.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Описание</td>
+                            <td>{{ object.description }}</td>
+                        </tr>
+                        <tr>
+                            <td>Цена</td>
+                            <td>{{ object.price }}</td>
+                        </tr>
+                    </table>
+                    <form
+                        action="{% url 'items:create-checkout-session' object.id %}"
+                        method="GET"
+                    >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Checkout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
