@@ -1,10 +1,8 @@
 from django.conf import settings
 from django.shortcuts import redirect
 from rest_framework.views import APIView
-from rest_framework.response import Response
 from django.views.generic import DetailView, TemplateView
 
-from stripe_shop.serializers import ItemSerializer
 from stripe_shop.models import Item
 
 import stripe
